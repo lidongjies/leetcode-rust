@@ -31,31 +31,22 @@ use crate::util::tree::{to_tree, TreeNode};
 // problem: https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
 // discuss: https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/discuss/?currentPage=1&orderBy=most_votes&query=
 
-// submission codes start here
-
-// Definition for a binary tree node.
-// #[derive(Debug, PartialEq, Eq)]
-// pub struct TreeNode {
-//   pub val: i32,
-//   pub left: Option<Rc<RefCell<TreeNode>>>,
-//   pub right: Option<Rc<RefCell<TreeNode>>>,
-// }
-//
-// impl TreeNode {
-//   #[inline]
-//   pub fn new(val: i32) -> Self {
-//     TreeNode {
-//       val,
-//       left: None,
-//       right: None
-//     }
-//   }
-// }
 use std::cell::RefCell;
 use std::rc::Rc;
 impl Solution {
     pub fn sorted_array_to_bst(nums: Vec<i32>) -> Option<Rc<RefCell<TreeNode>>> {
-        Some(Rc::new(RefCell::new(TreeNode::new(0))))
+        Self::sorted_array_to_bst_recursive(&nums)
+    }
+
+    pub fn sorted_array_to_bst_recursive(nums: &[i32]) -> Option<Rc<RefCell<TreeNode>>> {
+        if nums.is_empty() {
+            return None;
+        }
+        let mid = nums.len() / 2;
+        let mut node = TreeNode::new(nums[mid]);
+        node.left = Self::sorted_array_to_bst_recursive(&nums[..mid]);
+        node.right = Self::sorted_array_to_bst_recursive(&nums[mid + 1..]);
+        Some(Rc::new(RefCell::new(node)))
     }
 }
 
@@ -66,5 +57,12 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_108() {}
+    fn test_108() {
+        assert_eq!(
+            Solution::sorted_array_to_bst(vec![-10, -3, 0, 5, 9]),
+            tree![0, -3, 9, -10, null, 5]
+        );
+
+        assert_eq!(Solution::sorted_array_to_bst(vec![]), tree![]);
+    }
 }
