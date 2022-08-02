@@ -34,9 +34,8 @@
  */
 
 struct MyCircularQueue {
-    capcity: usize,
-    length: usize,
     data: Vec<i32>,
+    capcity: usize,
     front: usize,
     rear: usize,
 }
@@ -49,8 +48,8 @@ struct MyCircularQueue {
 impl MyCircularQueue {
 
     fn new(k: i32) -> Self {
-        let k = k as usize;
-        MyCircularQueue { capcity: k, length: 0, data: vec![0; k], front: 0, rear: 0 }
+        let k = k as usize + 1;
+        MyCircularQueue { capcity: k, data: vec![0; k], front: 0, rear: 0 }
     }
     
     fn en_queue(&mut self, value: i32) -> bool {
@@ -59,7 +58,6 @@ impl MyCircularQueue {
         }
         self.rear = (self.rear + 1) % self.capcity;
         self.data[self.rear] = value;
-        self.length += 1;
         true
     }
     
@@ -68,7 +66,6 @@ impl MyCircularQueue {
             return false;
         }
         self.front = (self.front + 1) % self.capcity;
-        self.length -= 1;
         true
     }
     
@@ -88,11 +85,11 @@ impl MyCircularQueue {
     }
     
     fn is_empty(&self) -> bool {
-        self.length == 0
+        self.front == self.rear
     }
     
     fn is_full(&self) -> bool {
-        self.capcity == self.length
+        self.front == (self.rear + 1) % self.capcity
     }
 }
 
@@ -114,7 +111,6 @@ impl MyCircularQueue {
     #[test]
     fn test_622() {
         let mut queue = MyCircularQueue::new(3);
-        assert_eq!(queue.capcity, 3);
         assert!(queue.en_queue(1));
         assert!(queue.en_queue(2));
         assert!(queue.en_queue(3));
