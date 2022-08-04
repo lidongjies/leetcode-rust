@@ -67,10 +67,6 @@ impl Solution {
         let mut new_index1 = 0;
         let mut new_index2 = 0;
         loop {
-            println!(
-                "index1:{} index2:{} newIndex1:{} newIndex2:{}, k:{}",
-                index1, index2, new_index1, new_index2, k
-            );
             if (index1 == nums1.len()) {
                 return nums2[index2 + k - 1];
             }
