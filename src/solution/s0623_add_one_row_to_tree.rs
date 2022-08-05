@@ -107,6 +107,60 @@ impl Solution {
         }
         return root;
     }
+
+    pub fn add_one_row_bfs(
+        root: Option<Rc<RefCell<TreeNode>>>,
+        val: i32,
+        depth: i32,
+    ) -> Option<Rc<RefCell<TreeNode>>> {
+        if (depth == 1) {
+            return Some(Rc::new(RefCell::new(TreeNode {
+                val: val,
+                left: root,
+                right: None,
+            })));
+        }
+        // 1. 遍历到深度为depth的节点，插入新节点
+        let mut queue = vec![Some(Rc::clone(root.as_ref().unwrap()))];
+        for d in 1..depth - 1 {
+            let mut temp = Vec::new();
+            queue.iter().for_each(|node| {
+                let node = Rc::clone(node.as_ref().unwrap());
+                let mut node = node.borrow_mut();
+                if let Some(left_node) = &node.left {
+                    temp.push(Some(Rc::clone(left_node)));
+                }
+                if let Some(right_node) = &node.right {
+                    temp.push(Some(Rc::clone(right_node)));
+                }
+            });
+            queue = temp;
+        }
+        println!("{:?}", queue);
+        queue.iter().for_each(|node| {
+            let node = Rc::clone(node.as_ref().unwrap());
+            let mut node = node.borrow_mut();
+            node.left = Some(Rc::new(RefCell::new(TreeNode {
+                val,
+                left: if node.left.is_some() {
+                    Some(Rc::clone(&node.left.as_ref().unwrap()))
+                } else {
+                    None
+                },
+                right: None,
+            })));
+            node.right = Some(Rc::new(RefCell::new(TreeNode {
+                val,
+                left: None,
+                right: if node.right.is_some() {
+                    Some(Rc::clone(&node.right.as_ref().unwrap()))
+                } else {
+                    None
+                },
+            })));
+        });
+        return root;
+    }
 }
 
 // submission codes end
@@ -118,15 +172,15 @@ mod tests {
     #[test]
     fn test_623() {
         assert_eq!(
-            Solution::add_one_row(tree![1, 2, 3, 4], 5, 4),
+            Solution::add_one_row_bfs(tree![1, 2, 3, 4], 5, 4),
             tree![1, 2, 3, 4, null, null, null, 5, 5]
         );
         assert_eq!(
-            Solution::add_one_row(tree![4, 2, 6, 3, 1, 5], 1, 2),
+            Solution::add_one_row_bfs(tree![4, 2, 6, 3, 1, 5], 1, 2),
             tree![4, 1, 1, 2, null, null, 6, 3, 1, 5]
         );
         assert_eq!(
-            Solution::add_one_row(tree![4, 2, null, 3, 1], 1, 3),
+            Solution::add_one_row_bfs(tree![4, 2, null, 3, 1], 1, 3),
             tree![4, 2, null, 1, 1, 3, null, null, 1]
         )
     }
