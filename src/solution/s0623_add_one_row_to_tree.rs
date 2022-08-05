@@ -136,7 +136,7 @@ impl Solution {
             });
             queue = temp;
         }
-        println!("{:?}", queue);
+
         queue.iter().for_each(|node| {
             let node = Rc::clone(node.as_ref().unwrap());
             let mut node = node.borrow_mut();

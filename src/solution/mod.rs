@@ -1,3 +1,4 @@
+mod s0001_two_sum;
 mod s004_median_of_two_sorted_arrays;
 mod s0108_convert_sorted_array_to_binary_search_tree;
 mod s0136_single_number;
@@ -6,3 +7,5 @@ mod s0899_orderly_queue;
 mod s1374_generate_a_string_with_characters_that_have_odd_counts;
 mod s1403_minimum_subsequence_in_non_increasing_order;
 mod s0623_add_one_row_to_tree;
+mod s1408_string_matching_in_an_array;
+
