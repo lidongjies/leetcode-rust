@@ -48,6 +48,7 @@ impl Solution {
                 value += sign2 * number;
             }
         }
+        // factor 等于 0 成立，说明 x 对方程无影响
         if factor == 0 {
             if value == 0 {
                 "Infinite solutions".to_string()
