@@ -11,6 +11,7 @@ mod s0636_exclusive_time_of_function;
 mod s0640_solve_the_equation;
 mod s0761_special_binary_string;
 mod s0899_orderly_queue;
+mod s1282_group_the_people_given_the_group_size_they_belong_to;
 mod s1374_generate_a_string_with_characters_that_have_odd_counts;
 mod s1403_minimum_subsequence_in_non_increasing_order;
 mod s1408_string_matching_in_an_array;
