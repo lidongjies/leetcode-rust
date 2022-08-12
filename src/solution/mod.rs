@@ -3,6 +3,7 @@ mod s0004_median_of_two_sorted_arrays;
 mod s0006_zigzag_conversion;
 mod s0008_string_to_integer_atoi;
 mod s0011_container_with_most_water;
+mod s0012_integer_to_roman;
 mod s0108_convert_sorted_array_to_binary_search_tree;
 mod s0136_single_number;
 mod s0622_design_circular_queue;
