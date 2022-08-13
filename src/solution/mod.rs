@@ -11,6 +11,8 @@ mod s0623_add_one_row_to_tree;
 mod s0636_exclusive_time_of_function;
 mod s0640_solve_the_equation;
 mod s0761_special_binary_string;
+mod s0768_max_chunks_to_make_sorted_ii;
+mod s0769_max_chunks_to_make_sorted;
 mod s0899_orderly_queue;
 mod s1282_group_the_people_given_the_group_size_they_belong_to;
 mod s1374_generate_a_string_with_characters_that_have_odd_counts;
