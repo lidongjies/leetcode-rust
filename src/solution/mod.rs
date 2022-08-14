@@ -20,3 +20,4 @@ mod s1403_minimum_subsequence_in_non_increasing_order;
 mod s1408_string_matching_in_an_array;
 mod s1413_minimum_value_to_get_positive_step_by_step_sum;
 mod s1417_reformat_the_string;
+mod s1422_maximum_score_after_splitting_a_string;
