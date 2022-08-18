@@ -11,6 +11,7 @@ mod s0623_add_one_row_to_tree;
 mod s0636_exclusive_time_of_function;
 mod s0640_solve_the_equation;
 mod s0641_design_circular_deque;
+mod s0735_asteroid_collision;
 mod s0761_special_binary_string;
 mod s0768_max_chunks_to_make_sorted_ii;
 mod s0769_max_chunks_to_make_sorted;
